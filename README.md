@@ -1,2 +1,11 @@
 # BugBountyTools
-soome tools for bug bounty
+
+some tools for bug bounty
+
+## Subdomain Take Over
+
+## LFI 
+
+## Open Redirect
+
+## SQLi

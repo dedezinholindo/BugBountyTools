@@ -1,0 +1,401 @@
+/https://www.example.com
+/%09/example.com
+/%2f%2fexample.com
+/%5cexample.com
+/plus/download.php?open=1&link=aHR0cHM6Ly9leGFtcGxlLmNvbQ==
+/.example.com
+//%09/example.com
+//%5cexample.com
+///%09/example.com
+///%5cexample.com
+////%09/example.com
+////%5cexample.com
+/gotoURL.asp?url=https://example.com&id=43569
+/gotoURL.asp?url=example.com&id=43569
+/////example.com
+/////example.com/
+////\;@example.com
+////example.com/
+////example.com/%2e%2e
+////example.com/%2e%2e%2f
+////example.com/%2f%2e%2e
+////example.com/%2f..
+////example.com//
+///\;@example.com
+///example.com
+/example.com/..;/css
+///example.com/
+//example.com/%2f..
+//www.whitelisteddomain.tld@example.com/%2f..
+///example.com/%2f..
+///www.whitelisteddomain.tld@example.com/%2f..
+////www.whitelisteddomain.tld@example.com/%2f..
+https://example.com/%2f..
+https://www.whitelisteddomain.tld@example.com/%2f..
+/https://example.com/%2f..
+/https://www.whitelisteddomain.tld@example.com/%2f..
+//www.example.com/%2f%2e%2e
+//www.whitelisteddomain.tld@www.example.com/%2f%2e%2e
+///www.example.com/%2f%2e%2e
+///www.whitelisteddomain.tld@www.example.com/%2f%2e%2e
+////www.example.com/%2f%2e%2e
+////www.whitelisteddomain.tld@www.example.com/%2f%2e%2e
+https://www.example.com/%2f%2e%2e
+https://www.whitelisteddomain.tld@www.example.com/%2f%2e%2e
+/https://www.example.com/%2f%2e%2e
+/https://www.whitelisteddomain.tld@www.example.com/%2f%2e%2e
+//example.com/
+//www.whitelisteddomain.tld@example.com/
+///www.whitelisteddomain.tld@example.com/
+////www.whitelisteddomain.tld@example.com/
+https://example.com/
+https://www.whitelisteddomain.tld@example.com/
+/https://example.com/
+/https://www.whitelisteddomain.tld@example.com/
+//example.com//
+//www.whitelisteddomain.tld@example.com//
+///example.com//
+///www.whitelisteddomain.tld@example.com//
+////www.whitelisteddomain.tld@example.com//
+https://example.com//
+https://www.whitelisteddomain.tld@example.com//
+//https://example.com//
+//https://www.whitelisteddomain.tld@example.com//
+//www.example.com/%2e%2e%2f
+//www.whitelisteddomain.tld@www.example.com/%2e%2e%2f
+///www.example.com/%2e%2e%2f
+///www.whitelisteddomain.tld@www.example.com/%2e%2e%2f
+////www.example.com/%2e%2e%2f
+////www.whitelisteddomain.tld@www.example.com/%2e%2e%2f
+https://www.example.com/%2e%2e%2f
+https://www.whitelisteddomain.tld@www.example.com/%2e%2e%2f
+//https://www.example.com/%2e%2e%2f
+//https://www.whitelisteddomain.tld@www.example.com/%2e%2e%2f
+///www.example.com/%2e%2e
+///www.whitelisteddomain.tld@www.example.com/%2e%2e
+////www.example.com/%2e%2e
+////www.whitelisteddomain.tld@www.example.com/%2e%2e
+https:///www.example.com/%2e%2e
+https:///www.whitelisteddomain.tld@www.example.com/%2e%2e
+//https:///www.example.com/%2e%2e
+//www.whitelisteddomain.tld@https:///www.example.com/%2e%2e
+/https://www.example.com/%2e%2e
+/https://www.whitelisteddomain.tld@www.example.com/%2e%2e
+https:///www.example.com/%2f%2e%2e
+https:///www.whitelisteddomain.tld@www.example.com/%2f%2e%2e
+/https:///www.example.com/%2f%2e%2e
+/https:///www.whitelisteddomain.tld@www.example.com/%2f%2e%2e
+/%09/www.whitelisteddomain.tld@example.com
+//%09/www.whitelisteddomain.tld@example.com
+///%09/www.whitelisteddomain.tld@example.com
+////%09/www.whitelisteddomain.tld@example.com
+https://%09/example.com
+https://%09/www.whitelisteddomain.tld@example.com
+/%5cwww.whitelisteddomain.tld@example.com
+//%5cwww.whitelisteddomain.tld@example.com
+///%5cwww.whitelisteddomain.tld@example.com
+////%5cwww.whitelisteddomain.tld@example.com
+https://%5cexample.com
+https://%5cwww.whitelisteddomain.tld@example.com
+/https://%5cexample.com
+/https://%5cwww.whitelisteddomain.tld@example.com
+https://example.com
+https://www.whitelisteddomain.tld@example.com
+//example.com
+https:example.com
+//example%E3%80%82com
+\/\/example.com/
+/\/example.com/
+//example%00.com
+https://www.whitelisteddomain.tld/https://www.example.com/
+〱example.com
+〵example.com
+ゝexample.com
+ーexample.com
+ｰexample.com
+/〱example.com
+/〵example.com
+/ゝexample.com
+/ーexample.com
+/ｰexample.com
+<>//example.com
+//example.com\@www.whitelisteddomain.tld
+https://:@example.com\@www.whitelisteddomain.tld
+http://example.com:80#@www.whitelisteddomain.tld/
+http://example.com:80?@www.whitelisteddomain.tld/
+///example.com/%2e%2e
+///example.com/%2e%2e%2f
+///example.com/%2f%2e%2e
+//example.com/%2e%2e
+//example.com/%2e%2e%2f
+//example.com/%2f%2e%2e
+//https:///example.com/%2e%2e
+//https://example.com/%2e%2e%2f
+/<>//example.com
+/?url=//example.com&next=//example.com&redirect=//example.com&redir=//example.com&rurl=//example.com&redirect_uri=//example.com
+/?url=/\/example.com&next=/\/example.com&redirect=/\/example.com&redirect_uri=/\/example.com
+/?url=Https://example.com&next=Https://example.com&redirect=Https://example.com&redir=Https://example.com&rurl=Https://example.com&redirect_uri=Https://example.com
+/\/\/example.com/
+/example.com/%2f%2e%2e
+/http://example.com
+/http:/example.com
+/https:/%5cexample.com/
+/https://%09/example.com
+/https:///example.com/%2e%2e
+/https:///example.com/%2f%2e%2e
+/https://example.com
+/https://example.com/%2e%2e
+/https://example.com/%2e%2e%2f
+/https://example.com/%2f%2e%2e
+/https://example.com//
+/https:example.com
+?redirect:https://www.example.com/
+index.action?redirect:http://www.example.com/
+index.php?redirect:http://www.example.com/
+index.html?redirect:http://www.example.com/
+index.asp?redirect:http://www.example.com/
+index.aspx?redirect:http://www.example.com/
+/redirect?url=//example.com&next=//example.com&redirect=//example.com&redir=//example.com&rurl=//example.com&redirect_uri=//example.com
+/redirect?url=/\/example.com&next=/\/example.com&redirect=/\/example.com&redir=/\/example.com&rurl=/\/example.com&redirect_uri=/\/example.com
+/redirect?url=Https://example.com&next=Https://example.com&redirect=Https://example.com&redir=Https://example.com&rurl=Https://example.com&redirect_uri=Https://example.com
+//%2fxexample.com
+//example.com@example.com/%2f..
+///example.com@example.com/%2f..
+////example.com@example.com/%2f..
+https://example.com@example.com/%2f..
+/https://example.com@example.com/%2f..
+//example.com@example.com/%2f%2e%2e
+///example.com@example.com/%2f%2e%2e
+////example.com@example.com/%2f%2e%2e
+https://example.com/%2f%2e%2e
+https://example.com@example.com/%2f%2e%2e
+/https://example.com@example.com/%2f%2e%2e
+//example.com@example.com/
+///example.com@example.com/
+////example.com@example.com/
+https://example.com@example.com/
+/https://example.com@example.com/
+//example.com@example.com//
+///example.com@example.com//
+////example.com@example.com//
+https://example.com@example.com//
+//https://example.com@example.com//
+//example.com@example.com/%2e%2e%2f
+///example.com@example.com/%2e%2e%2f
+////example.com@example.com/%2e%2e%2f
+https://example.com/%2e%2e%2f
+https://example.com@example.com/%2e%2e%2f
+//https://example.com@example.com/%2e%2e%2f
+///example.com@example.com/%2e%2e
+////example.com@example.com/%2e%2e
+https:///example.com/%2e%2e
+https:///example.com@example.com/%2e%2e
+//example.com@https:///example.com/%2e%2e
+/https://example.com@example.com/%2e%2e
+https:///example.com/%2f%2e%2e
+https:///example.com@example.com/%2f%2e%2e
+/https:///example.com@example.com/%2f%2e%2e
+/%09/example.com@example.com
+//%09/example.com@example.com
+///%09/example.com@example.com
+////%09/example.com@example.com
+https://%09/example.com@example.com
+/%5cexample.com@example.com
+//%5cexample.com@example.com
+///%5cexample.com@example.com
+////%5cexample.com@example.com
+https://%5cexample.com@example.com
+/https://%5cexample.com@example.com
+https://example.com@example.com
+https://example.com/https://example.com/
+javascript://example.com?%a0alert%281%29
+http://example.com@0xd8.0x3a.0xd6.0xce
+http://example.com@0xd83ad6ce
+http://example.com@3627734734
+http://example.com@472.314.470.462
+http://example.com@0330.072.0326.0316
+http://example.com@00330.00072.0000326.00000316
+http://example.com@[::216.58.214.206]
+http://example.com@[::ffff:216.58.214.206]
+http://example.com@0xd8.072.54990
+http://example.com@0xd8.3856078
+http://example.com@00330.3856078
+http://example.com@00330.0x3a.54990
+http:example.com@0xd8.0x3a.0xd6.0xce
+http:example.com@0xd83ad6ce
+http:example.com@3627734734
+http:example.com@472.314.470.462
+http:example.com@0330.072.0326.0316
+http:example.com@00330.00072.0000326.00000316
+http:example.com@[::216.58.214.206]
+http:example.com@[::ffff:216.58.214.206]
+http:example.com@0xd8.072.54990
+http:example.com@0xd8.3856078
+http:example.com@00330.3856078
+http:example.com@00330.0x3a.54990
+//example.com\@example.com
+https://:@example.com\@example.com
+http://example.com:80#@example.com/
+http://example.com:80?@example.com/
+http://3H6k7lIAiqjfNeN@example.com+@example.com/
+http://XY>.7d8T\205pZM@example.com+@example.com/
+http://3H6k7lIAiqjfNeN@example.com@example.com/
+http://XY>.7d8T\205pZM@example.com@example.com/
+http://example.com+&@example.com#+@example.com/
+http://example.com\texample.com/
+//example.com:80#@example.com/
+//example.com:80?@example.com/
+//3H6k7lIAiqjfNeN@example.com+@example.com/
+//XY>.7d8T\205pZM@example.com+@example.com/
+//3H6k7lIAiqjfNeN@example.com@example.com/
+//XY>.7d8T\205pZM@example.com@example.com/
+//example.com+&@example.com#+@example.com/
+//example.com\texample.com/
+//;@example.com
+http://;@example.com
+@example.com
+javascript://https://example.com/?z=%0Aalert(1)
+http://example.com%2f%2f.example.com/
+http://example.com%5c%5c.example.com/
+http://example.com%3F.example.com/
+http://example.com%23.example.com/
+http://example.com:80%40example.com/
+ /%2f%2fexample.com
+ /%5cexample.com
+ /.example.com
+ //%09/example.com
+ //%5cexample.com
+ ///%09/example.com
+ ///%5cexample.com
+ ////%09/example.com
+ ////%5cexample.com
+ /////example.com
+ /////example.com/
+ ////\;@example.com
+ ////example.com/
+ ////example.com/%2e%2e
+ ////example.com/%2e%2e%2f
+ ////example.com/%2f%2e%2e
+ ////example.com/%2f..
+ ////example.com//
+ ///\;@example.com
+ ///example.com
+ ///example.com/
+ //example.com/%2f..
+ ///example.com/%2f..
+ https://example.com/%2f..
+ /https://example.com/%2f..
+ //www.example.com/%2f%2e%2e
+ ///www.example.com/%2f%2e%2e
+ ////www.example.com/%2f%2e%2e
+ https://www.example.com/%2f%2e%2e
+ /https://www.example.com/%2f%2e%2e
+ //example.com/
+ https://example.com/
+ /https://example.com/
+ //example.com//
+ ///example.com//
+ ////   example.com//
+ https://example.com//
+ //https://example.com//
+ //www.example.com/%2e%2e%2f
+ ///www.example.com/%2e%2e%2f
+ ////www.example.com/%2e%2e%2f
+ https://www.example.com/%2e%2e%2f
+ //https://www.example.com/%2e%2e%2f
+ ///www.example.com/%2e%2e
+ ////www.example.com/%2e%2e
+ https:///www.example.com/%2e%2e
+ //https:///www.example.com/%2e%2e
+    //[email protected]:///www.example.com/%2e%2e
+ /https://www.example.com/%2e%2e
+ https:///www.example.com/%2f%2e%2e
+ /https:///www.example.com/%2f%2e%2e
+ /%09/example.com
+ https://%09/example.com
+ https://%5cexample.com
+ /https://%5cexample.com
+ https://example.com
+ //example.com
+ https:example.com
+ //example%E3%80%82com
+ \/\/example.com/
+ /\/example.com/
+ https   ://www.whitelisteddomain.tld/https://www.example.com/
+ 〱example.com
+ 〵example.com
+ ゝexample.com
+ ーexample.com
+ ｰexample.com
+ /〱example.com
+ /〵example.com
+ /ゝexample.com
+ /ーexample.com
+ /ｰexample.com
+ <>//example.com
+ //example.com\@www.whitelisteddomain.tld
+ https://:@example.com\@www.whitelisteddomain.tld
+ http://example.co   m:80#@www.whitelisteddomain.tld/
+ http://example.com:[email protected]/
+ ///example.com/%2e%2e
+ ///example.com/%2e%2e%2f
+ ///example.com/%2f%2e%2e
+ //example.com/%2e%2e
+ //example.com/%2e%2e%2f
+ //example.com/%2f%2e%2e
+ //https:///example.com/%2e%2e
+ //https://example.com/%2e%2e%2f
+ /<>//example.com
+ /?url=//example.com&next=//example.com&redirect=//example.com&redir=//example.com&rurl=//example.com&redirect_uri=//example.com
+ /?url=/\/example.com&next=/\/example.com&redirect=/\/example.com&redirect_uri=/\/example.com
+ /?url=Https://example.com&next=Https://example.com&redirect=Https://example.com&redir=Https://example.com&rurl=Https://example.com&redirect_uri=Https://example.com<   br/>/\/\/example.com/
+ /example.com/%2f%2e%2e
+ /http://example.com
+ /http:/example.com
+ /https:/%5cexample.com/
+ /https://%09/example.com
+ /https:///example.com/%2e%2e
+ /https:///example.com/%2f%2e%2e
+ /https://example.com
+ /https://example.com/%2e%2e
+ /https://example.com/%2e%2e%2f
+ /https://example.com/%2f%2e%2e
+ /https://example.com//
+ /https:example.com
+ /redirect?url=//example.com&next=//example.com&redirect=//example.com&redir=//example.com&rurl=//example.com&redirect_uri=//example.com
+ /redirect?url=/\/example.com&next=/\/example.com&redirect=/\/example.com&redir=/\/example.com&rurl=/\/example.com&redirect_uri=/\/example.com
+ /redirect?url=Https://example.com&next=Https://example.com&redirect=Https://example.com&redir=Https://exampl   e.com&rurl=Https://example.com&redirect_uri=Https://example.com
+ //%2fxexample.com
+ https://example.com/%2f%2e%2e
+ /https://example.com/%2f%2e%2   e
+ https://example.com/%2e%2e%2f
+ https:///example.com/%2e%2e
+ //[email protected]:///example.com/%2e%2e
+ https:///example.com/%2f%2e%2e
+ /%5c   example.com
+ https://example.com/https://example.com/
+ javascript://example.com?%a0alert%281%29
+ //example.com\@example.com
+ https://:@example.com\@example.com
+ http://example.com:80#@example.com/
+ http://[email protected]@example.com/
+ http://XY>.7d8T\[email protected]@example.com/
+ http://example.com+&@example.com#[email protected]/
+ http://example.com\texample.com/
+ //example.com:80#@example.com/
+ //example.com:[email protected]/
+ //[email protected]@example.com/
+ //XY>.7d8T\[email protected]@example.com/
+ //example.com+&@example.com#[email protected]/
+ //example.com\texample.com/
+ //;@example.com
+ http://;@example.com
+ @example.com
+ javascript://https://example.com/?z=%0Aalert(1)
+ http://example.com%2f%2f.example.com/
+ http://example.com%5c%5c.example.com/
+ http://example.com%3F.example.com/
+ http://example.com%23.example.com/
+ http://example.com:80%40example.com/
+ http://example.com%2eexample.com/
+http://example.com%2eexample.com/

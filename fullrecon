@@ -1,0 +1,106 @@
+#!/bin/bash
+
+############################################subdomain enumaration########################################################
+echo "Iniciando full recon GOOGLE" | notify;
+for i in $(cat $1); do
+	shuffledns -d $i -w /root/lists/subrecon.txt -r /root/lists/dns-resolvers.txt -o subsshuffledns;
+	assetfinder -subs-only $i | anew subsasset;
+	subfinder -d $i | anew subssubf;
+	curl -s "https://crt.sh/?q=%25.$i&output=json" | jq -r '.[].name_value' | sed 's/\*\.//g' | anew subscrt;
+	findomain -t $i -q | anew subsf;
+	python3 /root/tools/Sublist3r/sublist3r.py -d $i -o subslist3r;
+	chaos -d $i | anew subschaos;
+	python3 /root/tools/github-search/github-subdomains.py -t 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 -d $i >> tmp; cat tmp | grep -v ">" >> subsgit;
+	cat subs* | anew tudo;
+	rm -rf subs* tmp;
+done
+echo "Ta acabando recon... amass e jsub GOOGLE" | notify;
+amass enum -df $1 -active -p 443,8080,80,81,8081,8443 -config /root/.config/amass/config.ini -o subsamass;
+cat subsamass tudo | anew tot;
+jsubfinder -f tot | anew j200;
+cat j200 tot | anew total;
+rm tudo subsamass j200 tot;
+
+########################################################################################################################
+#############################################validando subdominios######################################################
+
+echo "Validando subdominios GOOGLE" | notify;
+cat total | httpx -threads 200 -random-agent -o 200;
+cat 200 | anew total200; rm 200;
+
+########################################################################################################################
+#############################################subdomain takeover#########################################################
+
+echo "searching for subdomain takeover" | notify;
+python3 /root/tools/BugBountyTools/takeover/subTakeOver.py total200 | anew takeover | notify;
+
+########################################################################################################################
+##############################################collecting urls###########################################################
+
+echo "Colentando urls GOOGLE" | notify;
+cat total200 | waybackurls | anew wayback;
+cat total200 | gauplus -t 100 --random-agent -b jpg,png,svg,jpeg,gif| anew gaup;
+xargs -a $1 -I@ sh -c 'python3 /root/tools/ParamSpider/paramspider.py -d @ --exclude jpg,png,svg,jpeg,gif --output param';
+cat wayback gaup param| anew urls;
+rm wayback gaup param;
+
+echo "Validando URLS GOOGLE" | notify;
+cat urls | httpx -threads 200 -random-agent -o url200;
+rm urls;
+
+########################################################################################################################
+#################################################js files analyze#######################################################
+
+echo "analisando js GOOGLE" | notify;
+cat total200 | getJS --complete --resolve --output getjs;
+cat url200 | grep -iE '\.js'| grep -iEv '(\.jsp|\.json)' | anew urlsJS.txt;
+cat total200 | subjs | anew subsjs;
+cat urlsJS.txt getjs subsjs | anew saidaJS ;
+rm -rf urlsJS.txt getjs subsjs;
+cat saidaJS | httpx -threads 200 -random-agent -o AliveJs.txt;
+rm saidaJS;
+python3 /root/tools/LinkFinder/linkfinder.py -i AliveJs.txt -o cli;
+cat AliveJs.txt  | python3 /root/tools/Bug-Bounty-Toolz/collector.py outputJS;
+python3 /root/tools/secretfinder/SecretFinder.py -i AliveJs.txt -o cli | anew outputJS/resultJSPASS;
+echo -e "AliveJs.txt\n/root/tools/JSScanner/regex.txt" | python3 /root/tools/JSScanner/JSScanner.py;
+
+#########################################################################################################################
+##################################################nuclei#################################################################
+
+echo "Iniciando nuclei, bonitao GOOGLE" | notify;
+nuclei -l total200 -t /root/nuclei-templates/ -severity low,medium,high,critical -o nuclei | notify;
+echo "Acabou o nuclei GOOGLE" | notify;
+
+#########################################################################################################################
+##########################################searching for open redirect####################################################
+
+echo "searching for Open Redirect" | notify;
+cat url200 | gf redirect | anew redirect;
+python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi.py opr redirect /root/tools/BugBountyTools/payloads/openpayloads.txt | anew openRedirect_results.txt | notify;
+python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi.py opr total200 /root/tools/BugBountyTools/payloads/openpayloads.txt | anew openRedirect_results.txt | notify;
+
+#########################################################################################################################
+##############################################searching for ssrf#########################################################
+
+echo "searching for ssrf" | notify;
+cat url200 | gf ssrf | anew ssrf;
+
+#########################################################################################################################
+###############################################searching for sqli########################################################
+
+echo "Iniciando procura por SQLinjection GOOGLE" | notify;
+cat url200 | gf sqli | anew sqli;
+python3 /root/tools/BugBountyTools/SQLi/SQLI.py sqli /root/tools/BugBountyTools/payloads/boolErrorBasedPayload.txt | anew sqli_results.txt | notify;
+
+#########################################################################################################################
+########################################################### lfi#########################################################
+
+echo "searching for LFI" | notify;
+cat url200 | gf lfi | anew lfi;
+python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi.py "lfi" lfi /root/tools/BugBountyTools/payloads/lfipayloads.txt | anew lfi_results.txt | notify;
+python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi.py "lfi" total200 /root/tools/BugBountyTools/payloads/lfipayloads.txt | anew lfi_results.txt | nortify;
+
+#########################################################################################################################
+
+echo "TOOL FINALIZADA! GOOGLE" | notify;
+
