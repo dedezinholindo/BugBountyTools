@@ -4,7 +4,6 @@
 apt-get update;
 apt-get upgrade -y;
 apt-get install python3-pip -y;
-pip3 install selenium
 apt install snapd -y;
 apt-get install jq -y;
 apt-get install git -y;
