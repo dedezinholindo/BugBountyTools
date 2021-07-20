@@ -27,6 +27,7 @@ rm tudo subsamass j200 tot;
 echo "Validando subdominios GOOGLE" | notify;
 cat total | httpx -threads 200 -random-agent -o 200;
 cat 200 | anew total200; rm 200;
+cat total200 | sed 's/$/\//' | anew total200Barra;
 
 ########################################################################################################################
 #############################################subdomain takeover#########################################################
@@ -75,7 +76,7 @@ echo -e "AliveJs.txt\n/root/tools/JSScanner/regex.txt" | python3 /root/tools/JSS
 #####################################################XSS#################################################################
 
 echo "searching for XSS vulnearbilities" | notify;
-cat total200 | gf xss | anew xss;
+cat url200 | gf xss | anew xss;
 #python3 /root/tools/BugBountyTools/XSS/xss.py xss /root/tools/BugBountyTools/payloads/xsspayloads;
 
 #########################################################################################################################
@@ -84,7 +85,7 @@ cat total200 | gf xss | anew xss;
 echo "searching for Open Redirect" | notify;
 cat url200 | gf redirect | anew redirect;
 python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi.py opr redirect /root/tools/BugBountyTools/payloads/openpayloads.txt | anew openRedirect_results.txt | notify;
-python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi.py opr total200 /root/tools/BugBountyTools/payloads/openpayloads.txt | anew openRedirect_results.txt | notify;
+python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi.py opr total200Barra /root/tools/BugBountyTools/payloads/openpayloads.txt | anew openRedirect_results.txt | notify;
 mkdir openScan; mv redirect sqliScan/; mv openRedirect_results.txt openScan/;
 
 #########################################################################################################################
@@ -108,7 +109,7 @@ mkdir sqliScan; mv sqli_results.txt sqliScan/; mv sqli sqliScan/;
 echo "searching for LFI" | notify;
 cat url200 | gf lfi | anew lfi;
 python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi.py "lfi" lfi /root/tools/BugBountyTools/payloads/lfipayloads.txt | anew lfi_results.txt | notify;
-python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi.py "lfi" total200 /root/tools/BugBountyTools/payloads/lfipayloads.txt | anew lfi_results.txt | nortify;
+python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi.py "lfi" total200Barra /root/tools/BugBountyTools/payloads/lfipayloads.txt | anew lfi_results.txt | nortify;
 mkdir lfiScan; mv lfi_results.txt lfiScan/; mv lfi lfiScan/;
 
 #########################################################################################################################
