@@ -49,6 +49,13 @@ cat urls | httpx -threads 200 -random-agent -o url200;
 rm urls;
 
 ########################################################################################################################
+##################################################nuclei#################################################################
+
+echo "Iniciando nuclei, bonitao GOOGLE" | notify;
+nuclei -l total200 -t /root/nuclei-templates/ -severity low,medium,high,critical -o nuclei | notify;
+echo "Acabou o nuclei GOOGLE" | notify;
+
+########################################################################################################################
 #################################################js files analyze#######################################################
 
 echo "analisando js GOOGLE" | notify;
@@ -65,11 +72,11 @@ python3 /root/tools/secretfinder/SecretFinder.py -i AliveJs.txt -o cli | anew ou
 echo -e "AliveJs.txt\n/root/tools/JSScanner/regex.txt" | python3 /root/tools/JSScanner/JSScanner.py;
 
 #########################################################################################################################
-##################################################nuclei#################################################################
+#####################################################XSS#################################################################
 
-echo "Iniciando nuclei, bonitao GOOGLE" | notify;
-nuclei -l total200 -t /root/nuclei-templates/ -severity low,medium,high,critical -o nuclei | notify;
-echo "Acabou o nuclei GOOGLE" | notify;
+echo "searching for XSS vulnearbilities" | notify;
+cat total200 | gf xss | anew xss;
+#python3 /root/tools/BugBountyTools/XSS/xss.py xss /root/tools/BugBountyTools/payloads/xsspayloads;
 
 #########################################################################################################################
 ##########################################searching for open redirect####################################################
@@ -78,12 +85,14 @@ echo "searching for Open Redirect" | notify;
 cat url200 | gf redirect | anew redirect;
 python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi.py opr redirect /root/tools/BugBountyTools/payloads/openpayloads.txt | anew openRedirect_results.txt | notify;
 python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi.py opr total200 /root/tools/BugBountyTools/payloads/openpayloads.txt | anew openRedirect_results.txt | notify;
+mkdir openScan; mv redirect sqliScan/; mv openRedirect_results.txt openScan/;
 
 #########################################################################################################################
 ##############################################searching for ssrf#########################################################
 
 echo "searching for ssrf" | notify;
 cat url200 | gf ssrf | anew ssrf;
+mkdir ssrfScan; mv ssrf ssrfScan/;
 
 #########################################################################################################################
 ###############################################searching for sqli########################################################
@@ -91,6 +100,7 @@ cat url200 | gf ssrf | anew ssrf;
 echo "Iniciando procura por SQLinjection GOOGLE" | notify;
 cat url200 | gf sqli | anew sqli;
 python3 /root/tools/BugBountyTools/SQLi/SQLI.py sqli /root/tools/BugBountyTools/payloads/boolErrorBasedPayload.txt | anew sqli_results.txt | notify;
+mkdir sqliScan; mv sqli_results.txt sqliScan/; mv sqli sqliScan/;
 
 #########################################################################################################################
 ########################################################### lfi#########################################################
@@ -99,6 +109,7 @@ echo "searching for LFI" | notify;
 cat url200 | gf lfi | anew lfi;
 python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi.py "lfi" lfi /root/tools/BugBountyTools/payloads/lfipayloads.txt | anew lfi_results.txt | notify;
 python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi.py "lfi" total200 /root/tools/BugBountyTools/payloads/lfipayloads.txt | anew lfi_results.txt | nortify;
+mkdir lfiScan; mv lfi_results.txt lfiScan/; mv lfi lfiScan/;
 
 #########################################################################################################################
 
