@@ -108,8 +108,8 @@ mkdir sqliScan; mv sqli_results.txt sqliScan/; mv sqli sqliScan/;
 
 echo "searching for LFI" | notify;
 cat url200 | gf lfi | anew lfi;
-python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi-url.py "lfi" lfi /root/tools/BugBountyTools/payloads/lfipayloads.txt | anew lfi_results.txt | notify;
-python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi-url.py "lfi" total200Barra /root/tools/BugBountyTools/payloads/lfipayloads.txt | anew lfi_results.txt | nortify;
+python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi-url.py "lfi" lfi /root/tools/BugBountyTools/payloads/lfipayload.txt | anew lfi_results.txt | notify;
+python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi-url.py "lfi" total200Barra /root/tools/BugBountyTools/payloads/lfipayload.txt | anew lfi_results.txt | nortify;
 mkdir lfiScan; mv lfi_results.txt lfiScan/; mv lfi lfiScan/;
 
 #########################################################################################################################

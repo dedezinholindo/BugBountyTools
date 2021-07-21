@@ -10,15 +10,15 @@ import threading
 
 
 http.client.HTTPConnection.debuglevel = 0 #nao derrubar o seu ip para muitas requisicoes
-headers = ['User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) ']
+headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 
 
 def applyPayload(url, payload):
-    payScape = payload.strip().replace("'", "dede").replace('"', "dezao")
+    payScape = payload.strip().replace("'", "dede").replace('"', "dezao").replace("-", "dedezinho")
     cmd = f"echo '{url.strip()}'| qsreplace '{payScape}'"
     modUrl = check_output(cmd, shell=True, executable='/bin/bash')
     payScape = urllib.parse.unquote(modUrl.decode().strip())
-    payScape = payScape.replace("dede", "'").replace('dezao', '"')
+    payScape = payScape.replace("dede", "'").replace('dezao', '"').replace("dedezinho", "-")
     return payScape
 
 def sqliErrorBased(req, payScape):
