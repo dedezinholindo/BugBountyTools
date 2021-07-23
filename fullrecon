@@ -66,18 +66,18 @@ echo "Acabou o nuclei GOOGLE" | notify;
 ########################################################################################################################
 #################################################js files analyze#######################################################
 
-echo "analisando js GOOGLE" | notify;
-cat total200 | getJS --complete --resolve --output getjs;
-cat url200 | grep -iE '\.js'| grep -iEv '(\.jsp|\.json)' | anew urlsJS.txt;
-cat total200 | subjs | anew subsjs;
-cat urlsJS.txt getjs subsjs | anew saidaJS ;
-rm -rf urlsJS.txt getjs subsjs;
-cat saidaJS | httpx -threads 200 -random-agent -o AliveJs.txt;
-rm saidaJS;
-python3 /root/tools/LinkFinder/linkfinder.py -i AliveJs.txt -o cli;
-cat AliveJs.txt  | python3 /root/tools/Bug-Bounty-Toolz/collector.py outputJS;
-python3 /root/tools/secretfinder/SecretFinder.py -i AliveJs.txt -o cli | anew outputJS/resultJSPASS;
-echo -e "AliveJs.txt\n/root/tools/JSScanner/regex.txt" | python3 /root/tools/JSScanner/JSScanner.py;
+#echo "analisando js GOOGLE" | notify;
+#cat total200 | getJS --complete --resolve --output getjs;
+#cat url200 | grep -iE '\.js'| grep -iEv '(\.jsp|\.json)' | anew urlsJS.txt;
+#cat total200 | subjs | anew subsjs;
+#cat urlsJS.txt getjs subsjs | anew saidaJS ;
+#rm -rf urlsJS.txt getjs subsjs;
+#cat saidaJS | httpx -threads 200 -random-agent -o AliveJs.txt;
+#rm saidaJS;
+#python3 /root/tools/LinkFinder/linkfinder.py -i AliveJs.txt -o cli;
+#cat AliveJs.txt  | python3 /root/tools/Bug-Bounty-Toolz/collector.py outputJS;
+#python3 /root/tools/secretfinder/SecretFinder.py -i AliveJs.txt -o cli | anew outputJS/resultJSPASS;
+#echo -e "AliveJs.txt\n/root/tools/JSScanner/regex.txt" | python3 /root/tools/JSScanner/JSScanner.py;
 
 #########################################################################################################################
 #####################################################XSS#################################################################
