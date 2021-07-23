@@ -60,7 +60,7 @@ rm urls;
 ##################################################nuclei#################################################################
 
 echo "Iniciando nuclei, bonitao GOOGLE" | notify;
-nuclei -l total200 -t /root/tools/BugBountyTools/nuclei-templates/ -severity low,medium,high,severe,critical -o nuclei | notify;
+nuclei -l total200 -t /root/tools/BugBountyTools/nuclei-template/ -severity low,medium,high,severe,critical -o nuclei | notify;
 echo "Acabou o nuclei GOOGLE" | notify;
 
 ########################################################################################################################
