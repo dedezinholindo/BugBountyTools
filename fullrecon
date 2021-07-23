@@ -9,6 +9,12 @@ for i in $(cat $1); do
 	curl -s "https://crt.sh/?q=%25.$i&output=json" | jq -r '.[].name_value' | sed 's/\*\.//g' | anew subscrt;
 	findomain -t $i -q | anew subsf;
 	python3 /root/tools/Sublist3r/sublist3r.py -d $i -o subslist3r;
+	curl -s "https://rapiddns.io/subdomain/$i?full=1#result" | grep "<td><a" | cut -d '"' -f 2 | grep http | cut -d '/' -f3 | sed 's/#results//g' | anew subsrapid;
+	curl -s https://dns.bufferover.run/dns?q=.$i |jq -r .FDNS_A[]|cut -d',' -f2| anew subsbuffer;
+	curl -s "https://riddler.io/search/exportcsv?q=pld:$i" | grep -Po "(([\w.-]*)\.([\w]*)\.([A-z]))\w+" | anew subsriddle; 
+	curl -s "http://web.archive.org/cdx/search/cdx?url=*.$i/*&output=text&fl=original&collapse=urlkey" | sed -e 's_https*://__' -e "s/\/.*//" | anew subsarchive;
+	curl -s "https://jldc.me/anubis/subdomains/$i" | grep -Po "((http|https):\/\/)?(([\w.-]*)\.([\w]*)\.([A-z]))\w+" | anew subsjldc;
+	curl --silent https://sonar.omnisint.io/subdomains/$i | grep -oE "[a-zA-Z0-9._-]+\.$i" | anew subssonar;
 	chaos -d $i | anew subschaos;
 	python3 /root/tools/github-search/github-subdomains.py -t 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 -d $i >> tmp; cat tmp | grep -v ">" >> subsgit;
 	cat subs* | anew tudo;
@@ -28,6 +34,7 @@ echo "Validando subdominios GOOGLE" | notify;
 cat total | httpx -threads 200 -random-agent -o 200;
 cat 200 | anew total200; rm 200;
 cat total200 | sed 's/$/\//' | anew total200Barra;
+cat total | httprobe -p http:81 -p http:3000 -p https:3000 -p http:3001 -p https:3001 -p http:8000 -p http:8080 -p https:8443 -p https:10000 -p http:9000 -p https:9443 -c 50 | anew totalhttprobe;
 
 ########################################################################################################################
 #############################################subdomain takeover#########################################################
@@ -53,7 +60,7 @@ rm urls;
 ##################################################nuclei#################################################################
 
 echo "Iniciando nuclei, bonitao GOOGLE" | notify;
-nuclei -l total200 -t /root/nuclei-templates/ -severity low,medium,high,critical -o nuclei | notify;
+nuclei -l total200 -t /root/tools/BugBountyTools/nuclei-templates/ -severity low,medium,high,severe,critical -o nuclei | notify;
 echo "Acabou o nuclei GOOGLE" | notify;
 
 ########################################################################################################################
@@ -78,15 +85,16 @@ echo -e "AliveJs.txt\n/root/tools/JSScanner/regex.txt" | python3 /root/tools/JSS
 echo "searching for XSS vulnearbilities" | notify;
 cat url200 | gf xss | anew xss;
 #python3 /root/tools/BugBountyTools/XSS/xss.py xss /root/tools/BugBountyTools/payloads/xsspayloads;
+#gospider -S total200 -c 10 -d 5 --blacklist ".(jpg|jpeg|gif|css|tif|tiff|png|ttf|woff|woff2|ico|pdf|svg|txt)" --other-source | grep -e "code-200" | awk '{print $5}'| grep "=" | qsreplace -a | dalfox pipe | tee result.txt
 
 #########################################################################################################################
 ##########################################searching for open redirect####################################################
 
 echo "searching for Open Redirect" | notify;
 cat url200 | gf redirect | anew redirect;
-python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi-param.py opr redirect /root/tools/BugBountyTools/payloads/openpayloads.txt | anew openRedirect_results.txt | notify;
-python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi-url.py opr total200Barra /root/tools/BugBountyTools/payloads/openpayloads.txt | anew openRedirect_results.txt | notify;
-mkdir openScan; mv redirect sqliScan/; mv openRedirect_results.txt openScan/;
+#python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi-param.py opr redirect /root/tools/BugBountyTools/payloads/openpayloads.txt | anew openRedirect_results.txt | notify;
+#python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi-url.py opr total200Barra /root/tools/BugBountyTools/payloads/openpayloads.txt | anew openRedirect_results.txt | notify;
+#mkdir openScan; mv redirect sqliScan/; mv openRedirect_results.txt openScan/;
 
 #########################################################################################################################
 ##############################################searching for ssrf#########################################################
@@ -100,17 +108,17 @@ mkdir ssrfScan; mv ssrf ssrfScan/;
 
 echo "Iniciando procura por SQLinjection GOOGLE" | notify;
 cat url200 | gf sqli | anew sqli;
-python3 /root/tools/BugBountyTools/SQLi/SQLI.py sqli /root/tools/BugBountyTools/payloads/boolErrorBasedPayload.txt | anew sqli_results.txt | notify;
-mkdir sqliScan; mv sqli_results.txt sqliScan/; mv sqli sqliScan/;
+#python3 /root/tools/BugBountyTools/SQLi/SQLI.py sqli /root/tools/BugBountyTools/payloads/boolErrorBasedPayload.txt | anew sqli_results.txt | notify;
+#mkdir sqliScan; mv sqli_results.txt sqliScan/; mv sqli sqliScan/;
 
 #########################################################################################################################
 ########################################################### lfi#########################################################
 
 echo "searching for LFI" | notify;
-cat url200 | gf lfi | anew lfi;
-python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi-url.py "lfi" lfi /root/tools/BugBountyTools/payloads/lfipayload.txt | anew lfi_results.txt | notify;
-python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi-url.py "lfi" total200Barra /root/tools/BugBountyTools/payloads/lfipayload.txt | anew lfi_results.txt | nortify;
-mkdir lfiScan; mv lfi_results.txt lfiScan/; mv lfi lfiScan/;
+#cat url200 | gf lfi | anew lfi;
+#python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi-url.py "lfi" lfi /root/tools/BugBountyTools/payloads/lfipayload.txt | anew lfi_results.txt | notify;
+#python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi-url.py "lfi" total200Barra /root/tools/BugBountyTools/payloads/lfipayload.txt | anew lfi_results.txt | nortify;
+#mkdir lfiScan; mv lfi_results.txt lfiScan/; mv lfi lfiScan/;
 
 #########################################################################################################################
 

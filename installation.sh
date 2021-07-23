@@ -40,6 +40,7 @@ GO111MODULE=on go get -v github.com/projectdiscovery/chaos-client/cmd/chaos;
 GO111MODULE=on go get -v github.com/projectdiscovery/httpx/cmd/httpx;
 GO111MODULE=on go get -u -v github.com/lc/subjs;
 go get -v github.com/OWASP/Amass/v3/...; #configuracoes
+go get -u github.com/tomnomnom/httprobe;
 go get github.com/tomnomnom/waybackurls;
 GO111MODULE=on go get -u -v github.com/bp0lr/gauplus;
 GO111MODULE=on go get -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei;

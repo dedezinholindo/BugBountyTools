@@ -34,9 +34,8 @@ def sqliBooleanBased(req, payScape):
 
 def sqli(url, payload):
     try:
-        s = requests.Session()
         payScape = applyPayload(url, payload)
-        req = s.get(payScape, verify=True, headers=headers)
+        req = requests.get(payScape, verify=True, headers=headers)
         sqliErrorBased(req, payScape)
         sqliBooleanBased(req, payScape)
     except:

