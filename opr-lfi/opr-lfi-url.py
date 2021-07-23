@@ -11,6 +11,8 @@ import requests
 http.client.HTTPConnection.debuglevel = 0 #nao derrubar o seu ip para muitas requisicoes
 #headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 
+threads = threading.Semaphore(10)
+
 def get_payloads(payloadFile):
     pay = []
     with open(payloadFile, 'r') as payloads: 
