@@ -4,6 +4,8 @@
 apt-get update;
 apt-get upgrade -y;
 apt-get install python3-pip -y;
+touch ~/.tmux.conf; echo "set -g history-limit 10000" > ~/.tmux.conf;
+apt-get install sqlmap -y;
 apt install snapd -y;
 apt-get install jq -y;
 apt-get install git -y;

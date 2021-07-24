@@ -13,7 +13,6 @@ requests:
     matchers:
       - type: word
         words:
-          - "array"
           - "Server Error"
           - "Undefined variable"
           - "Undefined index"

@@ -41,6 +41,7 @@ def sqli(url, payload):
     except:
         pass
 
+"""
 def initSearch(url, sqliErrorBooleanPayload):
     threads = []
     with open(sqliErrorBooleanPayload, 'r') as payloadFile: 
@@ -50,7 +51,12 @@ def initSearch(url, sqliErrorBooleanPayload):
             t.start()
         for thread in threads:
             thread.join()
+"""
 
+def initSearch(url, sqliErrorBooleanPayload):
+    with open(sqliErrorBooleanPayload, 'r') as payloadFile: 
+        for payload in payloadFile:
+            sqli(url, payload)
         
 def urls(archive, sqliErrorBooleanPayload):                
     with open(archive, 'r') as urlsFile:

