@@ -4,10 +4,12 @@
 apt-get update;
 apt-get upgrade -y;
 apt-get install python3-pip -y;
-touch ~/.tmux.conf; echo "set -g history-limit 10000" > ~/.tmux.conf;
+echo "set-option -g history-limit 99999" > /root/.tmux.conf;
 apt-get install sqlmap -y;
 apt install snapd -y;
 apt-get install jq -y;
+sudo apt-get install cargo -y;
+cargo install x8;
 apt-get install git -y;
 apt-get install host -y;
 go mod init puppy;
@@ -16,7 +18,7 @@ apt-get install tmux -y;
 go get -u github.com/tomnomnom/anew
 go get -u github.com/hiddengearz/jsubfinder
 GO111MODULE=on go get -v github.com/projectdiscovery/shuffledns/cmd/shuffledns;
-pip3 install faster_than_requests;
+pip3 install requests;
 go get -u github.com/tomnomnom/assetfinder;
 GO111MODULE=on go get -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder;
 go get github.com/003random/getJS;
@@ -25,7 +27,8 @@ chmod +x findomain-linux;
 mv findomain-linux findomain; mv findomain /usr/bin;
 mkdir tools;
 cd ~/lists; wget https://raw.githubusercontent.com/s0md3v/Arjun/master/arjun/db/params.txt
-cd ~/tools; git clone https://github.com/s0md3v/XSStrike.git; pip3 install -r XSStrike/requirements.txt 
+cd ~/tools; git clone https://github.com/s0md3v/XSStrike.git; pip3 install -r XSStrike/requirements.txt
+cd ~/tools; git clone https://github.com/s0md3v/Corsy.git;  
 cd ~/tools; git clone https://github.com/aboul3la/Sublist3r.git; pip3 install -r Sublist3r/requirements.txt
 cd ~/tools; git clone https://github.com/gwen001/github-search.git;
 cd ~/tools; git clone https://github.com/m4ll0k/takeover.git;
