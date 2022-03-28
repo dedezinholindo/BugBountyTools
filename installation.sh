@@ -4,7 +4,7 @@
 apt-get update;
 apt-get upgrade -y;
 apt-get install python3-pip -y;
-echo "set-option -g history-limit 99999" > /root/.tmux.conf;
+echo "set-option -g history-limit 99999" > ~/.tmux.conf;
 apt-get install sqlmap -y;
 apt install snapd -y;
 apt-get install jq -y;
@@ -55,7 +55,7 @@ go get -u github.com/tomnomnom/gf;
 go get -u github.com/ffuf/ffuf;
 cd ~/tools; git clone https://github.com/1ndianl33t/Gf-Patterns;
 cd ~; mkdir .gf;
-mv /root/tools/Gf-Patterns/*.json ~/.gf;
+mv ~/tools/Gf-Patterns/*.json ~/.gf;
 GO111MODULE=on go get -v github.com/projectdiscovery/notify/cmd/notify; #configurar
 
-mv /root/go/bin/* /usr/bin/;
+mv ~/go/bin/* /usr/bin/;
