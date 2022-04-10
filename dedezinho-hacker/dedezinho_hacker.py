@@ -1,5 +1,4 @@
 import argparse, sys
-sys.path.append("/hme/andrepereira/BugBountyTools/dedezinho-hacker")
 import GET_URLS.get_urls as get_url
 import GET_SUBDOMAINS.get_subdomain as get_sub
 
