@@ -72,9 +72,8 @@ def get_subdomain_collect(subdominios):
 	subprocess.Popen(f"echo 'Ta acabando recon... amass e jsub' | notify;", shell=True)
 	amass(subdominios)
 	finalizar()
-	subprocess.Popen(f"cat subsamass tudo | anew tot", shell=True)
-	jsubfinder("tot")
-	subprocess.Popen(f"cat j200 tot | anew total;rm tudo subsamass j200 tot;", shell=True)
+	subprocess.Popen(f"cat subsamass tudo | anew total", shell=True)
+	subprocess.Popen(f"rm tudo subsamass;", shell=True)
 	
 def validate_subdomains():
 	subprocess.Popen(f"echo 'Validando subdominios' | notify", shell=True)
