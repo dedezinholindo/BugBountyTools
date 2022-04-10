@@ -50,9 +50,6 @@ def github(domain):
 def amass(domains):
 	p = subprocess.Popen(f"amass enum -df {domains} -active -p 443,8080,80,81,8081,8443 -config /root/.config/amass/config.ini -o subsamass", shell=True)
 	p.communicate()
- 
-def jsubfinder(arquivo):
-    subprocess.Popen(f"jsubfinder -f {arquivo} | anew j200", shell=True)
 
 def finalizar():
     subprocess.Popen(f"cat subs* | anew tudo; rm -rf subs* tmp;", shell=True)
@@ -81,7 +78,7 @@ def get_subdomain_collect(subdominios):
 	
 def validate_subdomains():
 	subprocess.Popen(f"echo 'Validando subdominios' | notify", shell=True)
-	p = subprocess.Popen(f"""cat total | httpx -threads 200 -random-agent -o 200; cat 200 | anew total200; rm 200; cat total | httprobe -p http:81 -p http:3000 -p https:3000 -p http:3001 -p https:3001 -p http:8000 -p http:8080 -p https:8443 -p https:10000 -p http:9000 -p https:9443 -c 50 | anew total200;""")
+	p = subprocess.Popen(f"""cat total | httpx -threads 200 -random-agent -o 200; cat 200 | anew total200; rm 200; cat total | httprobe -p http:81 -p http:3000 -p https:3000 -p http:3001 -p https:3001 -p http:8000 -p http:8080 -p https:8443 -p https:10000 -p http:9000 -p https:9443 -c 50 | anew total200;""", shell=True)
 	p.communicate()
 
 def main(subdominios):
