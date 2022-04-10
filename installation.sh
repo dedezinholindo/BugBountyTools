@@ -17,15 +17,16 @@ apt-get install wget -y;
 apt-get install tmux -y; 
 go get -u github.com/tomnomnom/anew
 go get -u github.com/hiddengearz/jsubfinder
-GO111MODULE=on go get -v github.com/projectdiscovery/shuffledns/cmd/shuffledns;
+GO111MODULE=off go get -v github.com/projectdiscovery/shuffledns/cmd/shuffledns;
 pip3 install requests;
 go get -u github.com/tomnomnom/assetfinder;
-GO111MODULE=on go get -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder;
+GO111MODULE=off go get -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder;
 go get github.com/003random/getJS;
 wget https://github.com/findomain/findomain/releases/latest/download/findomain-linux;
 chmod +x findomain-linux;
 mv findomain-linux findomain; mv findomain /usr/bin;
 mkdir tools;
+mkdir lists;
 cd ~/lists; wget https://raw.githubusercontent.com/s0md3v/Arjun/master/arjun/db/params.txt
 cd ~/tools; git clone https://github.com/s0md3v/XSStrike.git; pip3 install -r XSStrike/requirements.txt
 cd ~/tools; git clone https://github.com/s0md3v/Corsy.git;  
@@ -41,14 +42,14 @@ cd ~; git clone https://github.com/projectdiscovery/nuclei-templates.git;
 cd ~/tools; git clone https://github.com/0x240x23elu/JSScanner.git; pip3 install -r JSScanner/requirements.txt
 cd ~/tools; git clone https://github.com/s0md3v/Arjun.git; cd Arjun; python3 setup.py install;
 cd ~/tools; git clone https://github.com/blechschmidt/massdns.git; cd massdns; make; mv bin/massdns /usr/bin/;
-GO111MODULE=on go get -v github.com/projectdiscovery/chaos-client/cmd/chaos;
-GO111MODULE=on go get -v github.com/projectdiscovery/httpx/cmd/httpx;
-GO111MODULE=on go get -u -v github.com/lc/subjs;
+GO111MODULE=off go get -v github.com/projectdiscovery/chaos-client/cmd/chaos;
+GO111MODULE=off go get -v github.com/projectdiscovery/httpx/cmd/httpx;
+GO111MODULE=off go get -u -v github.com/lc/subjs;
 go get -v github.com/OWASP/Amass/v3/...; #configuracoes
 go get -u github.com/tomnomnom/httprobe;
 go get github.com/tomnomnom/waybackurls;
-GO111MODULE=on go get -u -v github.com/bp0lr/gauplus;
-GO111MODULE=on go get -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei;
+GO111MODULE=off go get -u -v github.com/bp0lr/gauplus;
+GO111MODULE=off go get -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei;
 cd ~/tools; git clone https://github.com/hahwul/dalfox; cd dalfox; git pull -v; go install; go build;  ; #editar payloads
 go get -u github.com/KathanP19/Gxss;
 go get -u github.com/tomnomnom/gf; 
@@ -56,6 +57,6 @@ go get -u github.com/ffuf/ffuf;
 cd ~/tools; git clone https://github.com/1ndianl33t/Gf-Patterns;
 cd ~; mkdir .gf;
 mv ~/tools/Gf-Patterns/*.json ~/.gf;
-GO111MODULE=on go get -v github.com/projectdiscovery/notify/cmd/notify; #configurar
+GO111MODULE=off go get -v github.com/projectdiscovery/notify/cmd/notify; #configurar
 
 mv ~/go/bin/* /usr/bin/;
