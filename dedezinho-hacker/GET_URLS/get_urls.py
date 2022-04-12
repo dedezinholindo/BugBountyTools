@@ -10,7 +10,7 @@ def gauplus(arquivo):
     p.communicate()
     
 def paramspider(domains):
-    p = subprocess.Popen(f"xargs -a {domains} -I@ bash -c 'python3 /root/tools/ParamSpider/paramspider.py -d @ --exclude jpg,png,svg,jpeg,gif --output param'", she)
+    p = subprocess.Popen(f"xargs -a {domains} -I@ bash -c 'python3 /root/tools/ParamSpider/paramspider.py -d @ --exclude jpg,png,svg,jpeg,gif --output param'", shell=True)
     p.communicate()
     
 def get_all(domains, arquivo):
