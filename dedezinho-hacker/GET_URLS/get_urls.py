@@ -6,7 +6,7 @@ def waybackurl(arquivo):
     p.communicate()
     
 def gauplus(arquivo):
-    p = subprocess.Popen(f"cat {arquivo} | gauplus -t 100 --random-agent -b jpg,png,svg,jpeg,gif| anew gaup", shell=True)
+    p = subprocess.Popen(f"cat {arquivo} | gauplus -t 100 --random-agent -b jpg,png,svg,jpeg,gif | anew gaup", shell=True)
     p.communicate()
     
 def paramspider(domains):
