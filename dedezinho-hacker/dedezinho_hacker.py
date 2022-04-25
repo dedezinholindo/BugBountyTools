@@ -3,16 +3,16 @@ import GET_URLS.get_urls as get_url
 import GET_SUBDOMAINS.get_subdomain as get_sub
 
 
-parser = argparse.ArgumentParser(description='Set your Token and Amount example: "sniper.py -t 0x34faa80fec0233e045ed4737cc152a71e490e2e3 -a 0.2 -s 15"')
-parser.add_argument('-sub', '--subdomains', action="store_true",  help='str, which bsc we are going to use')
-parser.add_argument('-sqli', '--sqlinjection', action="store_true",  help='str, use or not richbot')
-parser.add_argument('-xss', '--xsscan', action="store_true",  help='float, Amount in Bnb to snipe e.g. "-a 0.1"')
-parser.add_argument('-lfi', '--lfiscan', action="store_true",  help='int, how mutch tx you want to send? It Split your BNB Amount in e.g. "-tx 5"')
-parser.add_argument('-subtake', '--subdomaintakeover',action="store_true",  help='Check if your token to buy is a Honeypot, e.g. "-hp" or "--honeypot"')
-parser.add_argument('-open', '--openredirect', action="store_true", help='No Buy, Skipp buy, if you want to use only TakeProfit/StopLoss/TrailingStopLoss')
-parser.add_argument('-urls', '--geturls', action="store_true", help='int, Percentage TakeProfit from your input BNB amount "-tp 50" ')
-parser.add_argument('-all', '--alloptions', action="store_true", help='int, Percentage TakeProfit from your input BNB amount "-tp 50" ')
-parser.add_argument('-a', '--archive',default=None, help='float, Amount in Bnb to snipe e.g. "-a 0.1"')
+parser = argparse.ArgumentParser(description='Set the informations or exploits that you want to execute"')
+parser.add_argument('-sub', '--subdomains', action="store_true",  help='get all the subdomains')
+parser.add_argument('-sqli', '--sqlinjection', action="store_true",  help='test SQL injection flaws')
+parser.add_argument('-xss', '--xsscan', action="store_true",  help='test Cross Site Scripting flaws')
+parser.add_argument('-lfi', '--lfiscan', action="store_true",  help='test Local File Inclusion flaws')
+parser.add_argument('-subtake', '--subdomaintakeover',action="store_true",  help='test subdomain takeover flaw')
+parser.add_argument('-open', '--openredirect', action="store_true", help='Test Open Redirect flaws')
+parser.add_argument('-urls', '--geturls', action="store_true", help='Get all the ulrs in the webarchive history ')
+parser.add_argument('-all', '--alloptions', action="store_true", help='Check all flaws')
+parser.add_argument('-a', '--archive',default=None, help='The archive with the key domains that we will analyze')
 args = parser.parse_args()
 
 class DedezinhoHacker():
