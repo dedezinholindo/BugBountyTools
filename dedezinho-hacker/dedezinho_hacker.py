@@ -3,7 +3,7 @@ import GET_URLS.get_urls as get_url
 import GET_SUBDOMAINS.get_subdomain as get_sub
 
 
-parser = argparse.ArgumentParser(description='Set the informations or exploits that you want to execute"')
+parser = argparse.ArgumentParser(description='Set the informations or exploits that you want to execute')
 parser.add_argument('-sub', '--subdomains', action="store_true",  help='get all the subdomains')
 parser.add_argument('-sqli', '--sqlinjection', action="store_true",  help='test SQL injection flaws')
 parser.add_argument('-xss', '--xsscan', action="store_true",  help='test Cross Site Scripting flaws')
@@ -32,7 +32,7 @@ class DedezinhoHacker():
         self.urls = args.geturls
         self.all = args.alloptions
         if not self.number_arguments(self.all, self.sub, self.sqli, self.xss, self.lfi, self.subtake, self.open, self.urls):
-            print("Just one argument per time")
+            print("You have to put just one argument")
             raise SystemExit
         if self.a == None:
             print("[ERROR] Specify de archive with the options -a")

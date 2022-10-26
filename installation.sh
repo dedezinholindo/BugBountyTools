@@ -16,7 +16,7 @@ go mod init puppy;
 apt-get install wget -y;
 apt-get install tmux -y; 
 go install -v github.com/tomnomnom/anew@latest;
-go install github.com/hiddengearz/jsubfinder@latest;
+go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest;
 wget https://raw.githubusercontent.com/ThreatUnkown/jsubfinder/master/.jsf_signatures.yaml && mv .jsf_signatures.yaml ~/.jsf_signatures.yaml;
 go install -v github.com/projectdiscovery/shuffledns/cmd/shuffledns@latest;
 pip3 install requests;
@@ -25,12 +25,12 @@ go install github.com/003random/getJS@latest;
 wget https://github.com/findomain/findomain/releases/latest/download/findomain-linux;
 chmod +x findomain-linux;
 mv findomain-linux findomain; mv findomain /usr/bin;
-mkdir tools;
-mkdir lists;
-cd ~/lists; wget https://raw.githubusercontent.com/s0md3v/Arjun/master/arjun/db/params.txt
-cd ~/tools; git clone https://github.com/s0md3v/XSStrike.git; pip3 install -r XSStrike/requirements.txt
+mkdir ~/tools;
+mkdir ~/lists;
+cd ~/lists; wget https://raw.githubusercontent.com/s0md3v/Arjun/master/arjun/db/params.txt;
+cd ~/tools; git clone https://github.com/s0md3v/XSStrike.git; pip3 install -r XSStrike/requirements.txt;
 cd ~/tools; git clone https://github.com/s0md3v/Corsy.git;  
-cd ~/tools; git clone https://github.com/aboul3la/Sublist3r.git; pip3 install -r Sublist3r/requirements.txt
+cd ~/tools; git clone https://github.com/aboul3la/Sublist3r.git; pip3 install -r Sublist3r/requirements.txt;
 cd ~/tools; git clone https://github.com/gwen001/github-search.git;
 cd ~/tools; git clone https://github.com/m4ll0k/takeover.git;
 cd ~/tools; git clone https://github.com/devanshbatham/ParamSpider.git; pip3 install -r ParamSpider/requirements.txt;

@@ -53,11 +53,11 @@ cat vulnerable-cors.txt | notify;
 ##############################################collecting urls###########################################################
 
 echo "Colentando urls " | notify;
-cat total200 | waybackurls | anew wayback;
-cat total200 | gauplus -t 100 --random-agent -b jpg,png,svg,jpeg,gif| anew gaup;
-xargs -a $1 -I@ bash -c 'python3 /root/tools/ParamSpider/paramspider.py -d @ --exclude jpg,png,svg,jpeg,gif --output param';
-cat wayback gaup output/param | anew urls;
-rm -rf wayback gaup output;
+#cat total200 | waybackurls | anew wayback;
+cat total200 | gau -t 100 --random-agent| anew gaulist;
+#xargs -a $1 -I@ bash -c 'python3 /root/tools/ParamSpider/paramspider.py -d @ --exclude jpg,png,svg,jpeg,gif --output param';
+cat gaulist | anew urls;
+rm -rf gaulist;
 
 echo "Validando URLS " | notify;
 cat urls | httpx -threads 200 -random-agent -o url200;

@@ -8,7 +8,7 @@ def search_domains(func, domains):
 		func(i)
   
 def shuffledns(domain):
-	p = subprocess.Popen(f"shuffledns -d {domain} /root/lists/subrecon.txt -r /root/lists/dns-resolvers.txt -o subsshuffledns", shell=True)
+	p = subprocess.Popen(f"shuffledns -d {domain} -r /root/lists/dns-resolvers.txt -o subsshuffledns", shell=True)
 	p.communicate()
 
 def assetfinder(domain):
